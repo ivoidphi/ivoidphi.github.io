@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Website</title>
+    <style>
+        body {
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 30px;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            padding: 20px;
+            font-size: 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #yes {
+            background-color: lightgreen;
+        }
+        #no {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Do you wanna read the letter i wrote you?</p>
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yes');
+        const noButton = document.getElementById('no');
+        let noClicks = 0;
+        let yesRedirected = false;
+
+        // Yes: only redirect once when clicked
+        yesButton.addEventListener('click', (e) => {
+            if (yesRedirected) return;
+            yesRedirected = true;
+            yesButton.disabled = true;
+            // short delay to show the text change, then redirect
+            setTimeout(() => {
+                window.location.href = 'goodchoice.html';
+            }, 150);
+        });
+
+        // No: each press shrinks No and grows Yes; at 5 presses Yes fills the screen
+        noButton.addEventListener('click', (e) => {
+            if (noClicks >= 5) return; // already maxed
+            noClicks++;
+
+            // shrink the No button progressively
+            const noScale = Math.max(0.15, 1 - noClicks * 0.16);
+            noButton.style.transform = `scale(${noScale})`;
+
+            // grow the Yes button progressively
+            const yesScale = 1 + noClicks * 0.32;
+            yesButton.style.transform = `scale(${yesScale})`;
+
+            // after 5 presses, make Yes fill the entire viewport
+            if (noClicks >= 5) {
+                // ensure final visual state
+                yesButton.classList.add('full');
+                noButton.style.transform = 'scale(0.12)';
+                noButton.style.pointerEvents = 'none';
+                // optional: hide overflow while yes fills screen
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    </script>
+</body>
+</html>
