@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>i love you forevermore</title>
+    <title>Interactive Website</title>
     <style>
         body {
             background-color: pink;
@@ -14,10 +14,17 @@
             margin: 0;
             font-family: 'Times New Roman', Times, serif;
             font-size: 30px;
-            overflow: hidden;
         }
         .container {
             text-align: center;
+        }
+        /* cat image styling: medium size, centered above the first paragraph */
+        .cat-img {
+            width: 300px;
+            max-width: 60%;
+            display: block;
+            margin: 0 auto 12px;
+            border-radius: 8px;
         }
         button {
             padding: 20px;
@@ -38,7 +45,8 @@
 </head>
 <body>
     <div class="container">
-        <p>Do you wanna read the letter i wrote you?</p>
+        <img class="cat-img" src="https://images.ctfassets.net/ub3bwfd53mwy/5WFv6lEUb1e6kWeP06CLXr/acd328417f24786af98b1750d90813de/4_Image.jpg?w=750" alt="cat">
+        <p>Do you wanna read the letter i wrote you? <br> January 9, 2025</p>
         <button id="yes">Yes</button>
         <button id="no">No</button>
     </div>
@@ -85,6 +93,4 @@
         });
     </script>
 </body>
-
 </html>
-
